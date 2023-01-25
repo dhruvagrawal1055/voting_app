@@ -24,7 +24,7 @@ class _loginScreenState extends State<loginScreen> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.email),
-          contentPadding: EdgeInsets.all(20),
+          // contentPadding: EdgeInsets.all(20),
           hintText: "Enter your email",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
     );
@@ -42,6 +42,13 @@ class _loginScreenState extends State<loginScreen> {
           hintText: "Password",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
     );
+    final loginButton = Material(
+      elevation: 5,
+      child: MaterialButton(
+        onPressed: () => {print("Login button pressed")},
+        child: Text("Login"),
+      ),
+    );
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -52,7 +59,15 @@ class _loginScreenState extends State<loginScreen> {
             child: Form(
               key: formKey,
               child: Column(
-                children: [emailField, PassField],
+                children: [
+                  Container(margin: EdgeInsets.all(20), child: emailField),
+                  Container(
+                      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                      child: PassField),
+                  Container(
+                      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                      child: loginButton)
+                ],
               ),
             ),
           ),
