@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'loginScreen.dart';
 
-
 class splashScreen extends StatelessWidget {
   const splashScreen({
     Key? key,
@@ -13,11 +12,11 @@ class splashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: "images/splash.png", 
-      duration: 2000,
-      splashIconSize: double.infinity,
-      backgroundColor: Color.fromRGBO(4, 42, 126, 1),
-      splashTransition: SplashTransition.sizeTransition,
-      nextScreen: loginScreen());
+        splash: "assets/images/splash.png",
+        duration: 150000,
+        splashIconSize: double.infinity,
+        backgroundColor: Color.fromRGBO(4, 42, 126, 1),
+        splashTransition: SplashTransition.sizeTransition,
+        nextScreen: loginScreen());
   }
 }
