@@ -1,63 +1,154 @@
 import 'package:flutter/material.dart';
 
-class loginScreen extends StatefulWidget {
-  const loginScreen({super.key});
-
-  @override
-  State<loginScreen> createState() => _loginScreenState();
-}
-
-class _loginScreenState extends State<loginScreen> {
-  final formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passController = new TextEditingController();
-
+class loginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final emailField = TextFormField(
-      autofocus: false,
-      controller: emailController,
-      keyboardType: TextInputType.emailAddress,
-      onSaved: (value) {
-        emailController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-          prefixIcon: Icon(Icons.email),
-          contentPadding: EdgeInsets.all(20),
-          hintText: "Enter your email",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
-    );
-    final PassField = TextFormField(
-      autocorrect: false,
-      controller: passController,
-      obscureText: true,
-      onSaved: (value) {
-        passController.text = value!;
-      },
-      textInputAction: TextInputAction.done,
-      decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          contentPadding: EdgeInsets.all(20),
-          hintText: "Password",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
-    );
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
           child: Container(
-            color: Colors.white,
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [emailField, PassField],
-              ),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/background.png'),
+                          fit: BoxFit.fill)),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 30,
+                        width: 80,
+                        height: 200,
+                        child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/light-1.png'))),
+                            )
+                        ),
+                      Positioned(
+                        left: 140,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/light-2.png'))),
+                        ),
+                      ),
+                      Positioned(
+                        right: 40,
+                        top: 40,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/clock.png'))),
+                        ),
+                      ),
+                      Positioned(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 50),
+                          child: Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: Column(
+                    children:[
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(143, 148, 251, .2),
+                                  blurRadius: 20.0,
+                                  offset: Offset(0, 10))
+                            ]),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Colors.grey[100]!))),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.mail),
+                                    border: InputBorder.none,
+                                    hintText: "Email or Phone number",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[400])),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.lock),
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[400])),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(colors: [
+                              Color.fromRGBO(143, 148, 251, 1),
+                              Color.fromRGBO(143, 148, 251, .6),
+                            ])),
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 70,
+                      ),
+                      Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                            color: Color.fromRGBO(143, 148, 251, 1)),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
