@@ -3,10 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'Screens/loginScreen.dart';
 import 'Animations/FadeAnimation.dart';
+import 'Screens/splashScreen.dart';
 
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -17,9 +19,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: loginScreen(),
+      home: splashScreen(),
     );
   }
 }

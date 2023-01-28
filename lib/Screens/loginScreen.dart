@@ -44,7 +44,7 @@ class loginScreen extends StatelessWidget {
                         width: 80,
                         height: 150,
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       'assets/images/clock.png'))),
