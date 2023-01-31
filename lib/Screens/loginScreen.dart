@@ -233,43 +233,49 @@ class _loginScreenState extends State<loginScreen> {
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 50,
-                        width: 130,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 8.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: const Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Center(
-                              child: Image.asset(
-                                "assets/images/google_logo.png",
-                                height: 35,
-                                width: 35,
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          width: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0,
+                              ), //BoxShadow
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: const Offset(0.0, 0.0),
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Center(
+                                child: Image.asset(
+                                  "assets/images/google_logo.png",
+                                  height: 35,
+                                  width: 35,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "Google",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(4, 42, 126, 1),
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                              Text(
+                                "Google",
+                                style: TextStyle(
+                                    color: Color.fromRGBO(4, 42, 126, 1),
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          FirebaseAuthMethod(FirebaseAuth.instance)
+                              .signInWithGoogle(context);
+                        },
                       ),
                     ],
                   ),
