@@ -1,7 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:voting_app/main.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:voting_app/utils/showSnakbar.dart';
+import '../firebase_options.dart';
+import 'package:voting_app/Services/Firebase_auth_methods.dart';
 
-class loginScreen extends StatelessWidget {
+class loginScreen extends StatefulWidget {
+  @override
+  State<loginScreen> createState() => _loginScreenState();
+}
+
+class _loginScreenState extends State<loginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool passenable = true;
+  void signUpUser() async {
+    FirebaseAuthMethod(FirebaseAuth.instance).EmailSignup(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+    setState(() {
+      emailController.text = "";
+      passwordController.text = "";
+    });
+    showSnackbar(context, "Signup successfully");
+  }
+
+  void logInUser() async {
+    FirebaseAuthMethod(FirebaseAuth.instance).loginUsingEmail(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+    setState(() {
+      emailController.text = "";
+      passwordController.text = "";
+    });
+    showSnackbar(context, "Login successfully");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +128,8 @@ class loginScreen extends StatelessWidget {
                                       bottom: BorderSide(
                                           color: Colors.grey[100]!))),
                               child: TextField(
+                                controller: emailController,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     prefixIcon: Icon(Icons.mail),
                                     border: InputBorder.none,
@@ -101,9 +140,32 @@ class loginScreen extends StatelessWidget {
                             ),
                             Container(
                               padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Colors.grey[100]!))),
                               child: TextField(
-                                obscureText: true,
+                                controller: passwordController,
+                                obscureText: passenable,
+                                keyboardType: TextInputType.visiblePassword,
                                 decoration: InputDecoration(
+                                    suffix: IconButton(
+                                        onPressed: () {
+                                          //add Icon button at end of TextField
+                                          setState(() {
+                                            //refresh UI
+                                            if (passenable) {
+                                              //if passenable == true, make it false
+                                              passenable = false;
+                                            } else {
+                                              passenable =
+                                                  true; //if passenable == false, make it true
+                                            }
+                                          });
+                                        },
+                                        icon: Icon(passenable == true
+                                            ? Icons.remove_red_eye
+                                            : Icons.panorama_fish_eye)),
                                     prefixIcon: Icon(Icons.lock),
                                     border: InputBorder.none,
                                     hintText: "Password",
@@ -117,22 +179,27 @@ class loginScreen extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            gradient: LinearGradient(colors: [
-                              Color.fromRGBO(4, 42, 126, 1),
-                              Color.fromRGBO(4, 42, 126, .6),
-                            ])),
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              gradient: LinearGradient(colors: [
+                                Color.fromRGBO(4, 42, 126, 1),
+                                Color.fromRGBO(4, 42, 126, .6),
+                              ])),
+                          child: Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          logInUser();
+                        },
                       ),
                       SizedBox(
                         height: 20,
