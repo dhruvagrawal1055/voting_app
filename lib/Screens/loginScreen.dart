@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:voting_app/Screens/registrationScreen.dart';
-import 'package:voting_app/Screens/registrationScreen.dart';
 import 'package:voting_app/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voting_app/utils/showSnakbar.dart';
@@ -17,18 +16,6 @@ class _loginScreenState extends State<loginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool passenable = true;
-  void signUpUser() async {
-    FirebaseAuthMethod(FirebaseAuth.instance).EmailSignup(
-        email: emailController.text,
-        password: passwordController.text,
-        context: context);
-    setState(() {
-      emailController.text = "";
-      passwordController.text = "";
-    });
-    showSnackbar(context, "Signup successfully");
-  }
-
   void logInUser() async {
     FirebaseAuthMethod(FirebaseAuth.instance).loginUsingEmail(
         email: emailController.text,

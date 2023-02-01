@@ -1,10 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voting_app/Services/Firebase_auth_methods.dart';
+import 'package:voting_app/utils/showSnakbar.dart';
+import 'package:voting_app/Screens/homeScreen.dart';
 
-class Field extends StatelessWidget {
+class Field extends StatefulWidget {
   final String title;
   final Icon icon;
-  const Field({required this.title,required this.icon ,super.key});
+  final TextEditingController controller;
+  final Object? id;
+  const Field(
+      {required this.title,
+      required this.icon,
+      required this.controller,
+      this.id,
+      super.key});
 
+  @override
+  State<Field> createState() => _FieldState();
+}
+
+class _FieldState extends State<Field> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,10 +29,11 @@ class Field extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.grey[100]!))),
         child: TextField(
+          controller: widget.controller,
           decoration: InputDecoration(
-              prefixIcon:icon,
+              prefixIcon: widget.icon,
               border: InputBorder.none,
-              hintText: "$title",
+              hintText: widget.title,
               hintStyle: TextStyle(color: Colors.grey[400])),
         ),
       ),
@@ -24,8 +41,41 @@ class Field extends StatelessWidget {
   }
 }
 
-class registrationScreen extends StatelessWidget {
+class registrationScreen extends StatefulWidget {
   const registrationScreen({super.key});
+
+  @override
+  State<registrationScreen> createState() => _registrationScreenState();
+}
+
+class _registrationScreenState extends State<registrationScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController confPassController = TextEditingController();
+  void signUpUser() async {
+    FirebaseAuthMethod(FirebaseAuth.instance).EmailSignup(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+    setState(() {
+      emailController.text = "";
+      passwordController.text = "";
+    });
+    showSnackbar(context, "Signup successfully");
+  }
+
+  void logInUser() async {
+    FirebaseAuthMethod(FirebaseAuth.instance).loginUsingEmail(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+    setState(() {
+      emailController.text = "";
+      passwordController.text = "";
+    });
+    showSnackbar(context, "Login successfully");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +164,29 @@ class registrationScreen extends StatelessWidget {
                                     ]),
                                 child: Column(
                                   children: [
-                                    Field(title: " Enter your name ",icon: Icon(Icons.person)),
-                                    Field(title: "Email",icon: Icon(Icons.email),),
-                                    Field(title: "Password",icon: Icon(Icons.password),),
-                                    Field(title: "Confirm Password",icon: Icon(Icons.password),),
+                                    Field(
+                                      title: " Enter your name ",
+                                      icon: Icon(Icons.person),
+                                      controller: nameController,
+                                    ),
+                                    Field(
+                                      title: "Email",
+                                      icon: Icon(Icons.email),
+                                      controller: emailController,
+                                      id: "emailid",
+                                    ),
+                                    Field(
+                                      title: "Password",
+                                      icon: Icon(Icons.password),
+                                      controller: passwordController,
+                                      id: "pass",
+                                    ),
+                                    Field(
+                                      title: "Confirm Password",
+                                      icon: Icon(Icons.password),
+                                      controller: confPassController,
+                                      id: "confPass",
+                                    ),
                                   ],
                                 ),
                               )
@@ -128,25 +197,38 @@ class registrationScreen extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 25,right: 25,top: 15),
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              gradient: LinearGradient(colors: [
-                                Color.fromRGBO(4, 42, 126, 1),
-                                Color.fromRGBO(4, 42, 126, .6),
-                              ])),
-                          child: Center(
-                            child: Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 25, right: 25, top: 15),
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          gradient: LinearGradient(colors: [
+                            Color.fromRGBO(4, 42, 126, 1),
+                            Color.fromRGBO(4, 42, 126, .6),
+                          ])),
+                      child: Center(
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
+                    ),
+                    onTap: () {
+                      if (passwordController.text == confPassController.text) {
+                        signUpUser();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        logInUser();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => homeScreen()));
+                      } else {
+                        showSnackbar(context, "Password dosen't match");
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
