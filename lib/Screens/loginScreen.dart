@@ -26,6 +26,7 @@ class _loginScreenState extends State<loginScreen> {
     //   emailController.text = "";
     //   passwordController.text = "";
     // });
+    // if(FirebaseAuth.instance.currentUser.)
     Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     showSnackbar(context, "Login successfully");

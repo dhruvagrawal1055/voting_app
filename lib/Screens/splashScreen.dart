@@ -5,11 +5,16 @@ import 'package:voting_app/Screens/registrationScreen.dart';
 
 import 'loginScreen.dart';
 
-class splashScreen extends StatelessWidget {
+class splashScreen extends StatefulWidget {
   const splashScreen({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<splashScreen> createState() => _splashScreenState();
+}
+
+class _splashScreenState extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(

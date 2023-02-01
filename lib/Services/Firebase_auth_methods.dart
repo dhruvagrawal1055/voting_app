@@ -44,8 +44,10 @@ class FirebaseAuthMethod {
 
   Future<void> sendEmailVerification(BuildContext context) async {
     try {
-      _auth.currentUser!.sendEmailVerification();
-      showSnackbar(context, "Email verification has been sent");
+      if (!(_auth.currentUser!.emailVerified)) {
+        _auth.currentUser!.sendEmailVerification();
+        showSnackbar(context, "Email verification has been sent");
+      }
     } on FirebaseAuthException catch (e) {
       showSnackbar(context, e.message!);
     }
@@ -63,7 +65,7 @@ class FirebaseAuthMethod {
             await _auth.signInWithCredential(credential);
         // if (userCredential.user!=null) {
         //   if (userCredential.additionalUserInfo!.isNewUser) {
-            
+
         //   }
         // }
       }
