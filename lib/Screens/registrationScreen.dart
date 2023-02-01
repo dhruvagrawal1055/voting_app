@@ -223,7 +223,7 @@ class _registrationScreenState extends State<registrationScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => homeScreen()));
+                                builder: (context) => Home()));
                       } else {
                         showSnackbar(context, "Password dosen't match");
                       }

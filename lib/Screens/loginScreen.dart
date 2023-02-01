@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voting_app/Screens/homeScreen.dart';
 import 'package:voting_app/Screens/registrationScreen.dart';
 import 'package:voting_app/main.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,10 +22,12 @@ class _loginScreenState extends State<loginScreen> {
         email: emailController.text,
         password: passwordController.text,
         context: context);
-    setState(() {
-      emailController.text = "";
-      passwordController.text = "";
-    });
+    // setState(() {
+    //   emailController.text = "";
+    //   passwordController.text = "";
+    // });
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     showSnackbar(context, "Login successfully");
   }
 
@@ -204,8 +207,11 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => registrationScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          registrationScreen()));
                             },
                             child: Text(
                               "Sign Up",

@@ -7,6 +7,7 @@ import 'Screens/loginScreen.dart';
 import 'Screens/registrationScreen.dart';
 import 'Animations/FadeAnimation.dart';
 import 'Screens/splashScreen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: splashScreen(),
     );
   }
 }
