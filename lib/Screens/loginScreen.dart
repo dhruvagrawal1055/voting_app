@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:voting_app/Screens/registrationScreen.dart';
+import 'package:voting_app/Screens/registrationScreen.dart';
 import 'package:voting_app/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voting_app/utils/showSnakbar.dart';
@@ -45,7 +46,7 @@ class _loginScreenState extends State<loginScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          child: Container(
+          child: SafeArea(
             child: Column(
               children: <Widget>[
                 Container(
@@ -215,24 +216,21 @@ class _loginScreenState extends State<loginScreen> {
                             ),
                           ),
                           InkWell(
+                            onTap: () {
+                              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => registrationScreen()));
+                            },
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
                                 color: Color.fromRGBO(4, 42, 126, 1),
                               ),
                             ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          registrationScreen()));
-                            },
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       Text(
                         "or you can sign in with",
