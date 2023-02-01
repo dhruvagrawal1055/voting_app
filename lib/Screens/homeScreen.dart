@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:voting_app/Screens/home/CreateVotes.dart';
 import 'package:voting_app/Screens/home/MyVotes.dart';
 import 'package:voting_app/Screens/home/Result.dart';
+import 'package:voting_app/Screens/loginScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -37,24 +39,29 @@ class _HomeState extends State<Home> {
               ListTile(
                 leading: Icon(Icons.poll),
                 title: InkWell(
-                  onTap: () => Navigator.pushNamed(context, "/Createscreen"),
-                  child: Text('Create Votes')),
+                    onTap: () => Navigator.pushNamed(context, "/Createscreen"),
+                    child: Text('Create Votes')),
               ),
               ListTile(
                 leading: Icon(Icons.account_circle),
                 title: InkWell(
-                  onTap: () => Navigator.pushNamed(context, "/Resultscreen"),
-                  child: Text('Result')),
+                    onTap: () => Navigator.pushNamed(context, "/Resultscreen"),
+                    child: Text('Result')),
               ),
               ListTile(
                 leading: Icon(Icons.history),
                 title: InkWell(
-                  onTap: () => Navigator.pushNamed(context, "/Votescreen"),
-                  child: Text('My Votes')),
+                    onTap: () => Navigator.pushNamed(context, "/Votescreen"),
+                    child: Text('My Votes')),
               ),
               ListTile(
                 leading: Icon(Icons.logout),
-                title: Text('Logout'),
+                title: InkWell(
+                    onTap: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.pushNamed(context, "/Loginscreen");
+                    },
+                    child: Text('Logout')),
               ),
             ],
           ))),
