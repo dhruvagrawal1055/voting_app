@@ -22,38 +22,13 @@ class _HomeState extends State<Home> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
-                child: Positioned(
-                  left: 600,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/light-2.png')),
-                    ),
-                  ),
-                ),
-                // Column(
-                //   children: [
-                //     Container(
-                //       decoration: BoxDecoration(
-                //         image: DecorationImage(
-                //     image: AssetImage('assets/images/light-2.png')),
-                //       ),
-                //     ),
-                //     Text(
-                //       'Dhruv',
-                //       style: TextStyle(
-                //         color: Colors.white,
-                //         fontSize: 30,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(4, 42, 126, 1),
-                ),
-              ),
+              UserAccountsDrawerHeader(
+                accountName: Text("Dhruv Agrawal"),
+                accountEmail: Text(""),
+                currentAccountPicture: CircleAvatar(foregroundImage: AssetImage('assets/images/light-2.png')),
+                      ),
+                
+              
               ListTile(
                 leading: Icon(Icons.poll),
                 title: Text('Create Votes'),
@@ -70,10 +45,8 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.logout),
                 title: Text('Logout'),
               ),
-            ],
+            ],))                            
           ),
-        ),
-      ),
-    );
+          );
   }
 }
