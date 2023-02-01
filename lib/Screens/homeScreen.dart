@@ -126,7 +126,7 @@ class _TabsState extends State<Tabs> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () => Navigator.pushNamed(context, ""),
+            
             child: Container(
               child: Center(
                 child: Text(
