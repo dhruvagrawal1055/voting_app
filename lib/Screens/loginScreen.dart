@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voting_app/Screens/Main_page.dart';
 import 'package:voting_app/Screens/homeScreen.dart';
 import 'package:voting_app/Screens/registrationScreen.dart';
+import 'package:voting_app/Screens/resetPassScreen.dart';
 import 'package:voting_app/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voting_app/utils/showSnakbar.dart';
@@ -31,9 +33,8 @@ class _loginScreenState extends State<loginScreen> {
     // if(FirebaseAuth.instance.currentUser.)
     globals.userdId = FirebaseAuth.instance.currentUser?.uid;
     // globals.userId = FirebaseAuth.instance.currentUser.uid;
-    Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-    showSnackbar(context, "Login successfully");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Main_page()));
   }
 
   @override
@@ -204,10 +205,16 @@ class _loginScreenState extends State<loginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                              color: Color.fromRGBO(4, 42, 126, 1),
+                          InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => reset())),
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(
+                                color: Color.fromRGBO(4, 42, 126, 1),
+                              ),
                             ),
                           ),
                           InkWell(

@@ -47,7 +47,7 @@ class _splashScreenState extends State<splashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: "assets/images/splash.png",
       duration: 1500,
