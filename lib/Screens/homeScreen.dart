@@ -99,6 +99,11 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.logout),
               title: InkWell(
                   // onTap: () => Navigator.popUntil(context, (route) => false),
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => loginScreen()));
+                  },
                   child: Text('Logout')),
             ),
           ],

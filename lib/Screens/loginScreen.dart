@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:voting_app/utils/showSnakbar.dart';
 import '../firebase_options.dart';
 import 'package:voting_app/Services/Firebase_auth_methods.dart';
+import 'package:voting_app/utils/globals.dart' as globals;
 
 class loginScreen extends StatefulWidget {
   @override
@@ -18,15 +19,18 @@ class _loginScreenState extends State<loginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool passenable = true;
   void logInUser() async {
-    FirebaseAuthMethod(FirebaseAuth.instance,GoogleAuthProvider()).loginUsingEmail(
-        email: emailController.text,
-        password: passwordController.text,
-        context: context);
+    FirebaseAuthMethod(FirebaseAuth.instance, GoogleAuthProvider())
+        .loginUsingEmail(
+            email: emailController.text,
+            password: passwordController.text,
+            context: context);
     // setState(() {
     //   emailController.text = "";
     //   passwordController.text = "";
     // });
     // if(FirebaseAuth.instance.currentUser.)
+    globals.userdId = FirebaseAuth.instance.currentUser?.uid;
+    // globals.userId = FirebaseAuth.instance.currentUser.uid;
     Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     showSnackbar(context, "Login successfully");
@@ -276,7 +280,8 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                         ),
                         onTap: () {
-                          FirebaseAuthMethod(FirebaseAuth.instance,GoogleAuthProvider())
+                          FirebaseAuthMethod(
+                                  FirebaseAuth.instance, GoogleAuthProvider())
                               .signInWithGoogle(context);
                         },
                       ),
