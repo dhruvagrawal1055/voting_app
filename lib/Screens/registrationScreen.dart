@@ -54,7 +54,7 @@ class _registrationScreenState extends State<registrationScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController confPassController = TextEditingController();
   void signUpUser() async {
-    FirebaseAuthMethod(FirebaseAuth.instance).EmailSignup(
+    FirebaseAuthMethod(FirebaseAuth.instance, GoogleAuthProvider()).EmailSignup(
         email: emailController.text,
         password: passwordController.text,
         context: context);
@@ -66,10 +66,11 @@ class _registrationScreenState extends State<registrationScreen> {
   }
 
   void logInUser() async {
-    FirebaseAuthMethod(FirebaseAuth.instance).loginUsingEmail(
-        email: emailController.text,
-        password: passwordController.text,
-        context: context);
+    FirebaseAuthMethod(FirebaseAuth.instance, GoogleAuthProvider())
+        .loginUsingEmail(
+            email: emailController.text,
+            password: passwordController.text,
+            context: context);
     setState(() {
       emailController.text = "";
       passwordController.text = "";
@@ -220,10 +221,8 @@ class _registrationScreenState extends State<registrationScreen> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         logInUser();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Home()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
                       } else {
                         showSnackbar(context, "Password dosen't match");
                       }

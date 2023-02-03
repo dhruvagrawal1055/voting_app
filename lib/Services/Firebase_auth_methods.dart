@@ -6,7 +6,8 @@ import 'package:voting_app/utils/showSnakbar.dart';
 
 class FirebaseAuthMethod {
   final FirebaseAuth _auth;
-  FirebaseAuthMethod(this._auth);
+  FirebaseAuthMethod(this._auth, this._googleAuthProvider);
+  final GoogleAuthProvider _googleAuthProvider;
   //email signup
   Future<void> EmailSignup({
     required String email,
@@ -55,20 +56,20 @@ class FirebaseAuthMethod {
 
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
-        final credential = GoogleAuthProvider.credential(
-            accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-        UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-        // if (userCredential.user!=null) {
-        //   if (userCredential.additionalUserInfo!.isNewUser) {
+      _auth.signInWithProvider(_googleAuthProvider);
+      // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      // final GoogleSignInAuthentication? googleAuth =
+      //     await googleUser?.authentication;
+      // if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+      //   final credential = GoogleAuthProvider.credential(
+      //       accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+      //   UserCredential userCredential =
+      //       await _auth.signInWithCredential(credential);
+      // if (userCredential.user!=null) {
+      //   if (userCredential.additionalUserInfo!.isNewUser) {
 
-        //   }
-        // }
-      }
+      //   }
+      // }
     } catch (e) {}
   }
 }

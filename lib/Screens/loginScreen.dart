@@ -18,7 +18,7 @@ class _loginScreenState extends State<loginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool passenable = true;
   void logInUser() async {
-    FirebaseAuthMethod(FirebaseAuth.instance).loginUsingEmail(
+    FirebaseAuthMethod(FirebaseAuth.instance,GoogleAuthProvider()).loginUsingEmail(
         email: emailController.text,
         password: passwordController.text,
         context: context);
@@ -276,7 +276,7 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                         ),
                         onTap: () {
-                          FirebaseAuthMethod(FirebaseAuth.instance)
+                          FirebaseAuthMethod(FirebaseAuth.instance,GoogleAuthProvider())
                               .signInWithGoogle(context);
                         },
                       ),
