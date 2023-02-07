@@ -7,9 +7,11 @@ import 'package:voting_app/Screens/home/Result.dart';
 import 'package:voting_app/Screens/homeScreen.dart';
 import 'package:voting_app/Screens/tiles/tileScreen.dart';
 import 'package:voting_app/firebase_options.dart';
+import 'Screens/Main_page.dart';
 import 'Screens/loginScreen.dart';
 import 'Screens/registrationScreen.dart';
 import 'Animations/FadeAnimation.dart';
+import 'Screens/resetPassScreen.dart';
 import 'Screens/splashScreen.dart';
 
 void main() async {
@@ -33,11 +35,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: Home(),
+      // home: Main_page(),
       initialRoute: "/",
       routes: {
         "/": (context) => splashScreen(),
-        "/Loginscreen":(context) => loginScreen(),
+        "/Loginscreen": (context) => loginScreen(),
         "/Signscreen": (context) => registrationScreen(),
         "/Homescreen": (context) => Home(),
         "/Createscreen": (context) => createVote(),

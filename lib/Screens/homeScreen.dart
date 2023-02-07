@@ -118,7 +118,14 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              title: InkWell(
+                  // onTap: () => Navigator.popUntil(context, (route) => false),
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => loginScreen()));
+                  },
+                  child: Text('Logout')),
             ),
           ],
         )));
@@ -147,7 +154,6 @@ class _TabsState extends State<Tabs> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            
             child: Container(
               child: Center(
                 child: Text(
