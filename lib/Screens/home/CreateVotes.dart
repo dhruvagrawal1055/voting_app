@@ -12,6 +12,7 @@ class _createVoteState extends State<createVote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:SafeArea(child: Text("Create votes")));
+      body:SafeArea(
+        child: Text("Create votes")));
   }
 }
