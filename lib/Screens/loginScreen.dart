@@ -49,6 +49,15 @@ class _loginScreenState extends State<loginScreen> {
     // globals.userId = FirebaseAuth.instance.currentUser.uid;
   }
 
+  void loginGoogle() async {
+    await FirebaseAuthMethod(FirebaseAuth.instance, GoogleAuthProvider())
+        .signInWithGoogle(context);
+    globals.userdId = FirebaseAuth.instance.currentUser?.uid;
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Main_page()));
+  }
+
   @override
   void dispose() {
     emailController.clear();
@@ -307,9 +316,7 @@ class _loginScreenState extends State<loginScreen> {
                           ),
                         ),
                         onTap: () {
-                          FirebaseAuthMethod(
-                                  FirebaseAuth.instance, GoogleAuthProvider())
-                              .signInWithGoogle(context);
+                          loginGoogle();
                         },
                       ),
                     ],
