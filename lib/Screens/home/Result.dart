@@ -11,6 +11,16 @@ class results extends StatefulWidget {
 class _resultsState extends State<results> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Text("Results")));
+    return Scaffold(
+        appBar: AppBar(
+      backgroundColor: Color.fromRGBO(4, 42, 126, 1),
+      title: Text("Result"),
+      leading: BackButton(
+        color: Colors.white,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    ));
   }
 }

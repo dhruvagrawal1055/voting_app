@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:voting_app/Screens/home/CreateVotes.dart';
+import 'package:voting_app/Screens/home/manageVotes/CreateVotes.dart';
 import 'package:voting_app/Screens/home/MyVotes.dart';
 import 'package:voting_app/Screens/home/Result.dart';
 import 'package:voting_app/Screens/homeScreen.dart';

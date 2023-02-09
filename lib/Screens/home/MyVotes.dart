@@ -11,6 +11,16 @@ class myVotes extends StatefulWidget {
 class _myVotesState extends State<myVotes> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Text("My Votes")));
+    return Scaffold(
+        appBar: AppBar(
+      backgroundColor: Color.fromRGBO(4, 42, 126, 1),
+      title: Text("Polling history"),
+      leading: BackButton(
+        color: Colors.white,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    ));
   }
 }
