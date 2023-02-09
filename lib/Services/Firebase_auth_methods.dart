@@ -19,10 +19,10 @@ class FirebaseAuthMethod {
       //send email verification
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
-      if (e.code == "weak Password") {
-        showSnackbar(context, "You entered wrong password");
-      }
-      showSnackbar(context, e.message!);
+      // if (e.code == "weak Password") {
+      //   showSnackbar(context, "You entered wrong password");
+      // }
+      // showSnackbar(context, e.message!);
     }
   }
 

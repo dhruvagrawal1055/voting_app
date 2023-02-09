@@ -122,6 +122,7 @@ class _HomeState extends State<Home> {
                   // onTap: () => Navigator.popUntil(context, (route) => false),
                   onTap: () {
                     FirebaseAuth.instance.signOut();
+                    // Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => loginScreen()));
                   },

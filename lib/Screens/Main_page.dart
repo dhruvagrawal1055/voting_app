@@ -14,7 +14,9 @@ class Main_page extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Home();
-            } else {
+            }
+            else {
+              // Navigator.pop(context);
               return loginScreen();
             }
           }),
