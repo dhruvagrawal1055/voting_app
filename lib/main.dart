@@ -5,6 +5,7 @@ import 'package:voting_app/Screens/home/CreateVotes.dart';
 import 'package:voting_app/Screens/home/MyVotes.dart';
 import 'package:voting_app/Screens/home/Result.dart';
 import 'package:voting_app/Screens/homeScreen.dart';
+import 'package:voting_app/Screens/tiles/tileScreen.dart';
 import 'package:voting_app/firebase_options.dart';
 import 'Screens/Main_page.dart';
 import 'Screens/loginScreen.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         "/Createscreen": (context) => createVote(),
         "/Votescreen": (context) => myVotes(),
         "/Resultscreen": (context) => results(),
+        "/TileScreen" : (context) => tileScreen(),
       },
     );
   }
