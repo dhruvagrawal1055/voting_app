@@ -21,23 +21,43 @@ class _loginScreenState extends State<loginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool passenable = true;
   void logInUser() async {
+    // try {
     FirebaseAuthMethod(FirebaseAuth.instance, GoogleAuthProvider())
         .loginUsingEmail(
             email: emailController.text,
             password: passwordController.text,
             context: context);
+    globals.userdId = FirebaseAuth.instance.currentUser?.uid;
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Main_page()));
+    setState(() {
+      emailController.clear();
+      passwordController.clear();
+    });
+    // } on FirebaseAuthException catch (e) {
+    //   // if (e.code == "user-not-found") {
+    //   //   showSnackbar(context, "Wrong Email entered");
+    //   // }
+    //   showSnackbar(context, e.message!);
+    // }
     // setState(() {
     //   emailController.text = "";
     //   passwordController.text = "";
     // });
     // if(FirebaseAuth.instance.currentUser.)
-    globals.userdId = FirebaseAuth.instance.currentUser?.uid;
     // globals.userId = FirebaseAuth.instance.currentUser.uid;
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Main_page()));
   }
 
   @override
+  void dispose() {
+    emailController.clear();
+    passwordController.clear();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
