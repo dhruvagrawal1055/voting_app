@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:voting_app/Screens/home/CreateVotes.dart';
+import 'package:voting_app/Screens/home/manageVotes/CreateVotes.dart';
 import 'package:voting_app/Screens/home/MyVotes.dart';
 import 'package:voting_app/Screens/home/Result.dart';
 import 'package:voting_app/Screens/loginScreen.dart';
+import 'package:voting_app/Screens/tiles/tileScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,36 +25,56 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Tabs(
-                  topic: "Team \nCaptain",
-                  icon: Icon(
-                    Icons.done,
-                    size: 15,
-                    color: Colors.green,
+                InkWell(
+                  onTap:() => {
+                    Navigator.pushNamed(context, "/TileScreen")
+                  },
+                  child: Tabs(
+                    topic: "Team \nCaptain",
+                    icon: Icon(
+                      Icons.done,
+                      size: 15,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-                Tabs(
-                  topic: "Team \nCaptain",
-                  icon: Icon(
-                    Icons.done,
-                    size: 15,
-                    color: Colors.green,
+                InkWell(
+                  onTap:() => {
+                    Navigator.pushNamed(context, "/TileScreen")
+                  },
+                  child: Tabs(
+                    topic: "Team \nCaptain",
+                    icon: Icon(
+                      Icons.done,
+                      size: 15,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-                Tabs(
-                  topic: "Team \nCaptain",
-                  icon: Icon(
-                    Icons.done,
-                    size: 15,
-                    color: Colors.green,
+                InkWell(
+                  onTap:() => {
+                    Navigator.pushNamed(context, "/TileScreen")
+                  },
+                  child: Tabs(
+                    topic: "Team \nCaptain",
+                    icon: Icon(
+                      Icons.done,
+                      size: 15,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-                Tabs(
-                  topic: "Team \nCaptain",
-                  icon: Icon(
-                    Icons.done,
-                    size: 15,
-                    color: Colors.green,
+                InkWell(
+                  onTap:() => {
+                    Navigator.pushNamed(context, "/TileScreen")
+                  },
+                  child: Tabs(
+                    topic: "Team \nCaptain",
+                    icon: Icon(
+                      Icons.done,
+                      size: 15,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
               ],
@@ -101,6 +122,7 @@ class _HomeState extends State<Home> {
                   // onTap: () => Navigator.popUntil(context, (route) => false),
                   onTap: () {
                     FirebaseAuth.instance.signOut();
+                    // Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => loginScreen()));
                   },
